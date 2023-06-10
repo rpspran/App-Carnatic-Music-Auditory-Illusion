@@ -1,0 +1,1898 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red14\green0\blue255;\red0\green128\blue19;\red160\green82\blue45;
+\red167\green9\blue245;}
+{\*\expandedcolortbl;;\csgenericrgb\c5490\c0\c100000;\csgenericrgb\c0\c50196\c7451;\csgenericrgb\c62745\c32157\c17647;
+\csgenericrgb\c65490\c3529\c96078;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15560\viewh11680\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs20 \cf2 classdef \cf0 App1 < matlab.apps.AppBase\
+\
+    \cf3 % Properties that correspond to app components\
+\cf0     \cf2 properties \cf0 (Access = public)\
+        UIFigure                        \cf4 matlab.ui.Figure\
+\cf0         TabGroup                        \cf4 matlab.ui.container.TabGroup\
+\cf0         Tab                             \cf4 matlab.ui.container.Tab\
+\cf0         OnShrutiBhedam                  \cf4 matlab.ui.control.Button\
+\cf0         InputRaga                       \cf4 matlab.ui.control.Button\
+\cf0         Nograhabhedamragas_SaPaVarjyam  \cf4 matlab.ui.control.NumericEditField\
+\cf0         Label3                          \cf4 matlab.ui.control.Label\
+\cf0         Nograhabhedamragas_SaPaVarjyamButton  \cf4 matlab.ui.control.Button\
+\cf0         Nograhabhedamragas_melakartaButton  \cf4 matlab.ui.control.Button\
+\cf0         NonotesButton                   \cf4 matlab.ui.control.Button\
+\cf0         Nograhabhedamragas_melakarta    \cf4 matlab.ui.control.NumericEditField\
+\cf0         LabelNumericEditField           \cf4 matlab.ui.control.Label\
+\cf0         Nonotesinraga                   \cf4 matlab.ui.control.NumericEditField\
+\cf0         DropDown                        \cf4 matlab.ui.control.DropDown\
+\cf0         LabelDropDown                   \cf4 matlab.ui.control.Label\
+\cf0         Label2                          \cf4 matlab.ui.control.Label\
+\cf0         Label                           \cf4 matlab.ui.control.Label\
+\cf0         Tab2                            \cf4 matlab.ui.container.Tab\
+\cf0         Label5                          \cf4 matlab.ui.control.Label\
+\cf0         OnGrahaBhedam                   \cf4 matlab.ui.control.Button\
+\cf0         NoGrahaBhedamRagas              \cf4 matlab.ui.control.NumericEditField\
+\cf0         NoNotesInRaga                   \cf4 matlab.ui.control.NumericEditField\
+\cf0         NoGrahaBhedamRagasButton        \cf4 matlab.ui.control.Button\
+\cf0         NoNotesinRagaButton             \cf4 matlab.ui.control.Button\
+\cf0         InputRagaListen                 \cf4 matlab.ui.control.Button\
+\cf0         DropDown2                       \cf4 matlab.ui.control.DropDown\
+\cf0         LabelDropDown2                  \cf4 matlab.ui.control.Label\
+\cf0         Tab3                            \cf4 matlab.ui.container.Tab\
+\cf0         Label6                          \cf4 matlab.ui.control.Label\
+\cf0         Button3                         \cf4 matlab.ui.control.Button\
+\cf0         NoGrahaBhedamRagasAj            \cf4 matlab.ui.control.NumericEditField\
+\cf0         Button2                         \cf4 matlab.ui.control.Button\
+\cf0         Button                          \cf4 matlab.ui.control.Button\
+\cf0         DropDown3                       \cf4 matlab.ui.control.DropDown\
+\cf0         Label4                          \cf4 matlab.ui.control.Label\
+\cf0     \cf2 end\
+\
+\
+\cf0     \cf2 properties \cf0 (Access = public)\
+        a\
+     shruti\
+     T\
+     no_of_notes_in_raga\
+     nocols_cmelakarta\
+     \
+     \
+     J\
+     norows_J\
+     aj\
+     no_of_notes_in_raga_janya\
+     nocols_cjanya\
+     nocols_cjanyaspv\
+     \
+     a1\
+     a2\
+     Aj\
+     \
+     nocols_c1janya\
+     nocols_c2janya\
+     \
+    \cf2 end\
+\
+\cf0     \cf2 properties \cf0 (Access = private)\
+        Property3 \cf3 % Description\
+\cf0         Property4 \cf3 % Description\
+\cf0         Property \cf3 % Description\
+\cf0     \cf2 end\
+\
+\cf0     \cf2 methods \cf0 (Access = public)\
+        \
+        \cf2 function \cf0 results = func(app)\
+            \
+        \cf2 end\
+\
+\cf0     \cf2 end\
+\
+\
+\cf0     \cf3 % Callbacks that handle component events\
+\cf0     \cf2 methods \cf0 (Access = private)\
+\
+        \cf3 % Code that executes after component creation\
+\cf0         \cf2 function \cf0 startupFcn(app)\
+            \
+         \
+\
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Value changed function: DropDown\
+\cf0         \cf2 function \cf0 choose_dropdown(app, event)\
+            value = app.DropDown.Value;\
+\
+            atemp=zeros(1,12);\
+            \
+            app.T=cell(72, 2);\
+\
+            \
+            load(\cf5 'testovaci_melakarta72'\cf0 , \cf5 'melakarta72'\cf0 );\
+            \
+            app.T=melakarta72;\
+\
+            load(\cf5 'testovaci_janyaragas'\cf0 , \cf5 'janyaragas'\cf0 )\
+\
+            app.J=janyaragas;\
+       [app.norows_J,~]=size(app.J);\
+            \
+            \
+           \cf3 % T(1,:)=\{'Mohanam', [1 0 1 0 1 0 0 1 0 1 0 0]\};\
+\cf0             \cf3 %T(2,:)=\{'Madhyamavathi', [1 0 1 0 0 1 0 1 0 0 1 0]\};\
+\cf0             \cf3 %T(3,:)=\{'Hindolam', [1 0 0 1 0 1 0 0 1 0 1 0 ]\};\
+\cf0             \cf3 %T(4,:)=\{'Sudha Saveri', [1 0 1 0 0 1 0 1 0 1 0 0]\};\
+\cf0             \cf3 %T(5,:)=\{'Sudha Dhanyasi', [1 0 0 1 0 1 0 1 0 0 1 0]\};\
+\cf0         \
+            \cf2 for \cf0 i=1:72\
+                \cf2 if \cf0 strcmp(value, app.T(i,1))\
+                 atemp = cell2mat(app.T(i,2));\
+                \cf2 end\
+\cf0             \cf2 end\
+\cf0             app.a = atemp;\
+\
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: InputRaga\
+\cf0         \cf2 function \cf0 Input_raga(app, event)\
+                 \
+            \
+            \
+\cf3 %production of bshruti vector with original notes\
+\
+\cf0  \cf3 %app.a= [1 ; 0; 1; 0; 1; 0; 1; 1; 0; 1; 0; 1] \
+\
+\
+\cf0 shrutitemp = [261.62, 277.18, 293.66, 311.12, 329.62, 349.22, 369.99, 391.99, 415.30, 440.00, 466.16, 493.88];\
+app.shruti=shrutitemp';\
+\
+ainteriminterim=app.a;\
+ainterim=ainteriminterim';\
+\
+bshruti=zeros(12,1);\
+\
+bshruti=ainterim.*app.shruti;\
+\
+\
+noelements_in_bshrutinonzeros=length(nonzeros(bshruti(:,1)));\
+bshrutinonzeros = zeros(noelements_in_bshrutinonzeros,1);\
+bshrutinonzeros=nonzeros(bshruti(:,1));\
+bshrutinonzeros = [bshrutinonzeros; 523.25];\
+\
+\
+\
+no_of_notes_bshrutinonzeros=length(bshrutinonzeros);\
+[reff,ceff]=size(bshrutinonzeros);\
+\
+notes=[bshrutinonzeros;0;(fliplr(bshrutinonzeros'))'];\
+no_of_notes=length(notes);\
+\
+\
+\
+\cf3 %  Generating the sound of the raga\
+\
+\cf0 Fs        =  12000;  \cf3 % sampling frequency\
+\cf0 repeat    =  1;     \cf3 % no. of repeatition you want to hear the raga\
+\cf0 tim       =  1;      \cf3 % hear each swara/note for 1 second\
+\
+\
+%duration of each swara\
+\cf0 dur = ones(no_of_notes,1);\
+\
+\
+\cf3 % amplitude of sound of each note\
+\cf0 amp   = 48 * ones(no_of_notes,1)./60;\
+\
+\
+\cf3 % no. of harmonics\
+\cf0 nharm = 8;   \cf3 % (if nharm is 2, note freq f and 2f are added to sound)\
+\
+% scaling the amplitude of harmonics (exp(1-n)/fac))\
+\cf0 fac   = 1;\
+sig = [];\
+\cf2 for \cf0 j = 1:repeat\
+\cf2 for \cf0 i = 1:no_of_notes\
+x = generate_tone(notes(i),tim*dur(i),amp(i),Fs,nharm,fac);\
+sig = horzcat(sig,x);\
+\cf2 end\
+end\
+\
+\
+\cf0 app.no_of_notes_in_raga=reff-1;\
+\
+\
+fprintf(\cf5 'The input raga sounds like\\n'\cf0 )\
+pause(5)\
+sound(sig,Fs)\
+pause(10)\
+\
+audiowrite(\cf5 'Kamavardhini.wav'\cf0 ,sig,Fs)\
+\
+\
+\
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: OnShrutiBhedam\
+\cf0         \cf2 function \cf0 Shrutibhedam(app, event)\
+            \
+shrutitemp = [261.62, 277.18, 293.66, 311.12, 329.62, 349.22, 369.99, 391.99, 415.30, 440.00, 466.16, 493.88];\
+app.shruti=shrutitemp';\
+\
+\cf3 %Circular shifting\
+\
+\cf0 ainterim=app.a';\
+\
+\
+b=zeros(13,11);\
+\
+\cf2 for \cf0 i=1:11\
+\
+b(1,i) = i+1;\
+b([2:13],i)= circshift(ainterim,12-i);\
+\
+\cf2 end\
+\
+\
+\cf0 s=sum(b(2,1:11));\
+\
+c=zeros(13,s);\
+\
+t=0;\
+\
+\cf2 for \cf0 (i=1:11)\
+    \cf2 if \cf0 b(2,i)==1\
+        t=t+1;\
+        c(:,t)=b(:,i);\
+    \cf2 end\
+end\
+\cf0     \
+\
+\
+c=unique(c',\cf5 'rows'\cf0 )';\
+\
+\
+\cf3 %c of 13 cross 6 matrix is generated in which the first row is the swara\
+%from which Graha bhedam is done\
+%the rest 12 rows are the 1, 0 binary notation\
+%there are totally 6 columns which talk about the 6 new scales formed by\
+%graha bhedam, the 6 columns start with 1, i.e there is definitely a\
+%Shadjam.\
+\
+\cf0 cmelakarta=[];\
+\
+[norows_c,nocols_c]=size(c);\
+\
+cmelakarta_colindex=0;\
+\
+\cf2 for \cf0 i=1:nocols_c\
+ \
+    tempcolvector=c(:,i);\
+    temprowvector=tempcolvector';\
+    \
+    \cf2 for \cf0 melno=1:72\
+        \cf2 if \cf0 isequal(cell2mat(app.T(melno,2)),temprowvector(1,[2:13]))\
+            cmelakarta_colindex = cmelakarta_colindex + 1;\
+            cmelakarta(1,cmelakarta_colindex) = temprowvector(1,1);\
+            cmelakarta(2,cmelakarta_colindex) = melno;\
+            cmelakarta([3:14],cmelakarta_colindex)=temprowvector(1,[2:13])';\
+        \cf2 end\
+\cf0     \cf2 end\
+\cf0             \
+    \
+\cf2 end\
+\
+\cf0 norows_cmelakarta=0;\
+\
+app.nocols_cmelakarta=0;\
+\
+[norows_cmelakarta,app.nocols_cmelakarta]=size(cmelakarta);\
+\
+fprintf(\cf5 'The number of melakarta ragas produced on Graha Bhedam are %d\\n'\cf0 ,app.nocols_cmelakarta)\
+\
+    \cf3 %app.Nograhabhedamragas_melakarta.Value=app.nocols_cmelakarta\
+\
+\
+\
+%Production of cshruti matrix with zeros for the shifted ragas\
+\
+\
+\cf0 cshruti=zeros(15,app.nocols_cmelakarta);\
+\
+\cf2 for \cf0 i = 1:app.nocols_cmelakarta\
+    cshruti(1,i)=cmelakarta(1,i);\
+    cshruti(2,i)=cmelakarta(2,i);\
+    cshruti([3:14],i)=cmelakarta([3:14],i).*app.shruti.*((1.059463)^(cmelakarta(1,i)-1));\
+    cshruti(15,i)= 523.25.*((1.059463)^(cmelakarta(1,i)-1));\
+\cf2 end\
+\
+\
+\
+\cf3 %Generation of cshrutinonzeros matrix\
+\
+\cf0 noelements_in_cshrutinonzeros=length(nonzeros(cshruti(:,1)));\
+cshrutinonzeros = zeros(noelements_in_cshrutinonzeros,app.nocols_cmelakarta);\
+\
+\cf2 for \cf0 i=1:app.nocols_cmelakarta\
+    cshrutinonzeros(1,i)=cshruti(1,i);\
+    cshrutinonzeros(2,i)=cshruti(2,i);\
+    cshrutinonzeros([3:noelements_in_cshrutinonzeros],i)=nonzeros(cshruti([3:15],i));\
+\cf2 end\
+\
+\
+\
+\
+\cf0 [reff,ceff]=size(cshrutinonzeros);\
+\
+\
+\
+\cf3 %Tabulation of Note Number and Swara Name\
+\
+\cf0 N=cell(12, 2);\
+          \
+           N(1,:)=\{\cf5 'Sa'\cf0 , 1\};\
+           N(2,:)=\{\cf5 'Ri 1'\cf0 , 2\};\
+           N(3,:)=\{\cf5 'Ri 2'\cf0 , 3\};\
+           N(4,:)=\{\cf5 'Ga 2'\cf0 , 4\};\
+           N(5,:)=\{\cf5 'Ga 3'\cf0 , 5\};\
+           N(6,:)=\{\cf5 'Ma 1'\cf0 , 6\};\
+           N(7,:)=\{\cf5 'Ma 2'\cf0 , 7\};\
+           N(8,:)=\{\cf5 'Pa'\cf0 , 8\};\
+           N(9,:)=\{\cf5 'Dha 1'\cf0 , 9\};\
+           N(10,:)=\{\cf5 'Dha 2'\cf0 , 10\};\
+           N(11,:)=\{\cf5 'Ni 2'\cf0 , 11\};\
+           N(12,:)=\{\cf5 'Ni 3'\cf0 , 12\};\
+\
+         \
+           \
+           \
+SNo=zeros(ceff,1);          \
+\cf3 %Graha_Bhedam_From_Swara=strings([ceff,1]);\
+\cf0 Yields_MelakartaNo=zeros(ceff,1);\
+\cf3 %MelakartaName=strings([ceff,1]);  \
+\cf0            \
+Graha_Bhedam_From_Swara=cell(ceff,1);\
+MelakartaName=cell(ceff,1);\
+\
+\cf2 for \cf0 tdim=1:ceff\
+\
+notes=[cshrutinonzeros([3:reff],tdim);0;(fliplr(cshrutinonzeros([3:reff],tdim)'))'];\
+no_of_notes=length(notes);\
+\
+\cf3 %  Generating the sound of the raga\
+\
+\cf0 Fs        =  12000;  \cf3 % sampling frequency\
+\cf0 repeat    =  1;     \cf3 % no. of repeatition you want to hear the raga\
+\cf0 tim       =  1;      \cf3 % hear each swara/note for 1 second\
+\
+\
+%duration of each swara\
+\cf0 dur = ones(no_of_notes,1);\
+\
+\
+\cf3 % amplitude of sound of each note\
+\cf0 amp   = 48 * ones(no_of_notes,1)./60;\
+\
+\
+\cf3 % no. of harmonics\
+\cf0 nharm = 8;   \cf3 % (if nharm is 2, note freq f and 2f are added to sound)\
+\
+% scaling the amplitude of harmonics (exp(1-n)/fac))\
+\cf0 fac   = 1;\
+m = [];\
+\cf2 for \cf0 j = 1:repeat\
+\cf2 for \cf0 i = 1:no_of_notes\
+x = generate_tone(notes(i),tim*dur(i),amp(i),Fs,nharm,fac);\
+m = horzcat(m,x);\
+\cf2 end\
+end\
+\
+\
+\
+\cf0     \
+    \
+    \
+noteno=cshrutinonzeros(1,tdim);\
+\
+\cf3 %for initializing with random note Ga1\
+\cf0 note_name=\cf5 'Ga 1'\cf0 ;\
+\
+\cf2 for \cf0 i=1:12\
+    \cf2 if \cf0 i==noteno\
+        note_name=N(i,1);\
+    \cf2 end\
+end\
+\
+\cf3 %note_name=cell2mat(notename);\
+%note_name_string is the swara name like Sa, Ri, Ga, Ma\
+\
+%curly braces at end of line 372\
+\cf0 note_name_string=note_name\{1\};\
+\
+melakarta_no = cshrutinonzeros(2,tdim);\
+\
+melakarta_name_incell=app.T(melakarta_no,1);\
+\
+\cf3 %curly braces at end of line 378\
+\cf0 melakarta_name=melakarta_name_incell\{1\};\
+\
+\
+SNo(tdim,1)=tdim;\
+Yields_MelakartaNo(tdim,1)=melakarta_no;\
+Graha_Bhedam_From_Swara(tdim,1)=note_name;\
+MelakartaName(tdim,1)=melakarta_name_incell;\
+\
+\
+\
+fprintf(\cf5 '%d. The notes when shifted from the swara %s give the scale of melakarta no. % d %s \\n'\cf0 , tdim,note_name_string,melakarta_no,melakarta_name) \
+\
+sound(m,Fs)\
+pause(20)\
+\
+\
+\
+\cf2 end\
+\
+\
+\cf3 %Cell to string\
+\cf0 Shruthi_Bhedam_From_Swara=char(Graha_Bhedam_From_Swara);\
+Melakarta_Raga=char(MelakartaName);\
+\
+\cf3 %tout = table('size',[ceff 4],'VariableTypes',\{'int8','string','int8','string'\});          \
+% tout = table(SNo,Shruthi_Bhedam_From_Swara,Yields_MelakartaNo,Melakarta_Raga);\
+\
+\
+%All converted to cell form\
+\
+\cf0 SNo_cell=num2cell(SNo);\
+Yields_MelakartaNo_cell=num2cell(Yields_MelakartaNo);\
+\
+\
+Graha_Bhedam_Ragas=table(SNo_cell, Graha_Bhedam_From_Swara, Yields_MelakartaNo_cell, MelakartaName);\
+Graha_Bhedam_Melakarta_Ragas=table(SNo_cell, Graha_Bhedam_From_Swara, Yields_MelakartaNo_cell, MelakartaName)\
+\
+Uitable_data=[Graha_Bhedam_From_Swara Yields_MelakartaNo_cell MelakartaName];\
+\
+\cf3 % f=uifigure;\
+% uit = uitable('Parent', f,'Data',magic(10))\
+\
+\
+\cf0 f = figure(\cf5 'Position'\cf0 , [100 100 752 250]);\
+\
+t = uitable(\cf5 'Parent'\cf0 , f, \cf5 'Position'\cf0 , [25 50 700 200], \cf5 'Data'\cf0 , Uitable_data);\
+t.ColumnName = \{\cf5 'Graha Bhedam from Swara'\cf0 , \cf5 'Yields Melakarta No.'\cf0 , \cf5 'Melakarta Raga'\cf0 \};\
+t.ColumnWidth = \{\cf5 'auto'\cf0 , \cf5 'auto'\cf0 , 300\};\
+t.FontSize=12;\
+\
+\cf3 %uit.ColumnName = \{'SNo','Swara','Mela No','Raga'\};\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+%Commencement of work on Shadjama Panchama Varjyam\
+\
+\
+\
+\cf0 load(\cf5 'testovaci_janyaragas'\cf0 , \cf5 'janyaragas'\cf0 )\
+\
+app.J=janyaragas;\
+\
+\cf3 %Specific Segment for Shadjama Panchama Varjyam\
+%Circular shifting\
+\
+\cf0 ainterimspv=app.a';\
+\
+ainterimspv(1,1)=0;\
+ainterimspv(8,1)=0;\
+\
+bspv=zeros(13,11);\
+\
+\cf2 for \cf0 i=1:11\
+\
+bspv(1,i) = i+1;\
+bspv([2:13],i)= circshift(ainterimspv,12-i);\
+\
+\cf2 end\
+\
+\
+\cf0 sspv=sum(bspv(2,1:11));\
+\
+cspv=zeros(13,sspv);\
+\
+t=0;\
+\
+\cf2 for \cf0 i=1:11\
+    \cf2 if \cf0 bspv(2,i)==1\
+        t=t+1;\
+        cspv(:,t)=bspv(:,i);\
+    \cf2 end\
+end\
+\cf0     \
+\
+\
+cspv=unique(cspv',\cf5 'rows'\cf0 )';\
+\
+\
+\cf3 %c of 13 cross 6 matrix is generated in which the first row is the swara\
+%from which Graha bhedam is done\
+%the rest 12 rows are the 1, 0 binary notation\
+%there are totally 6 columns which talk about the 6 new scales formed by\
+%graha bhedam, the 6 columns start with 1, i.e there is definitely a\
+%Shadjam.\
+\
+\cf0 moverall_spv=[];\
+\
+cjanyaspv=[];\
+\
+[norows_cspv,nocols_cspv]=size(cspv);\
+\
+cjanyaspv_colindex=0;\
+\
+\cf2 for \cf0 i=1:nocols_cspv\
+ \
+    tempcolvector=cspv(:,i);\
+    temprowvector=tempcolvector';\
+    \
+    \cf2 for \cf0 janyano=1:norows_cspv\
+        \cf2 if \cf0 isequal(cell2mat(app.J(janyano,2)),temprowvector(1,[2:13]))\
+            cjanyaspv_colindex = cjanyaspv_colindex + 1;\
+            cjanyaspv(1,cjanyaspv_colindex) = temprowvector(1,1);\
+            cjanyaspv(2,cjanyaspv_colindex) = janyano;\
+            cjanyaspv([3:14],cjanyaspv_colindex)=temprowvector(1,[2:13])';\
+        \cf2 end\
+\cf0     \cf2 end\
+\cf0             \
+    \
+\cf2 end\
+\
+\cf0 norows_cjanyaspv=0;\
+\
+app.nocols_cjanyaspv=0;\
+\
+[norows_cjanyaspv,app.nocols_cjanyaspv]=size(cjanyaspv);\
+\
+fprintf(\cf5 'With Shadjam & Panchama Varjyam, number of ragas produced on Graha Bhedam are %d\\n'\cf0 ,app.nocols_cjanyaspv)\
+\
+\cf3 %Production of cshruti matrix with zeros for the shifted ragas\
+\cf0 cshrutispv=zeros(15,app.nocols_cjanyaspv);\
+\
+\cf2 for \cf0 i = 1:app.nocols_cjanyaspv\
+    cshrutispv(1,i)=cjanyaspv(1,i);\
+    cshrutispv(2,i)=cjanyaspv(2,i);\
+    cshrutispv([3:14],i)=cjanyaspv([3:14],i).*app.shruti.*((1.059463)^(cjanyaspv(1,i)-1));\
+    cshrutispv(15,i)=523.25.*((1.059463)^(cjanyaspv(1,i)-1));\
+\
+\cf2 end\
+\
+\
+\
+\cf3 %Generation of cshrutinonzeros matrix\
+\
+\cf0 noelements_in_cshrutispvnonzeros=length(nonzeros(cshrutispv(:,1)));\
+cshrutispvnonzeros = zeros(noelements_in_cshrutispvnonzeros,app.nocols_cjanyaspv);\
+\
+\
+\
+\cf2 for \cf0 i=1:app.nocols_cjanyaspv\
+    cshrutispvnonzeros(1,i)=cshrutispv(1,i);\
+    cshrutispvnonzeros(2,i)=cshrutispv(2,i);\
+    cshrutispvnonzeros([3:noelements_in_cshrutispvnonzeros],i)=nonzeros(cshrutispv([3:15],i));\
+\cf2 end\
+\
+\
+\cf0 [reff_spv,ceff_spv]=size(cshrutispvnonzeros);\
+\
+rtemp_spv=reff_spv-2;\
+rangec1_spv=zeros(rtemp_spv, 16001,ceff_spv);\
+\
+\
+\
+\cf3 %Graha_Bhedam_From_Swara=strings([ceff,1]);\
+%MelakartaName=strings([ceff,1]);  \
+\cf0            \
+\
+SNo=zeros(ceff_spv,1);          \
+Graha_Bhedam_From_Swara=cell(ceff_spv,1);\
+Raga_Name=cell(ceff_spv,1);\
+\
+\
+\
+\cf2 for \cf0 tdim=1:ceff_spv\
+\
+\
+\
+    \
+    \
+    \
+    \
+notes=[cshrutispvnonzeros([2:reff_spv],tdim);0;(fliplr(cshrutispvnonzeros([2:reff_spv],tdim)'))'];\
+no_of_notes=length(notes);\
+\
+\cf3 %  Generating the sound of the raga\
+\
+\cf0 Fs        =  12000;  \cf3 % sampling frequency\
+\cf0 repeat    =  1;     \cf3 % no. of repeatition you want to hear the raga\
+\cf0 tim       =  1;      \cf3 % hear each swara/note for 1 second\
+\
+\
+%duration of each swara\
+\cf0 dur = ones(no_of_notes,1);\
+\
+\
+\cf3 % amplitude of sound of each note\
+\cf0 amp   = 48 * ones(no_of_notes,1)./60;\
+\
+\
+\cf3 % no. of harmonics\
+\cf0 nharm = 8;   \cf3 % (if nharm is 2, note freq f and 2f are added to sound)\
+\
+% scaling the amplitude of harmonics (exp(1-n)/fac))\
+\cf0 fac   = 1;\
+m_spv = [];\
+\cf2 for \cf0 j = 1:repeat\
+\cf2 for \cf0 i = 1:no_of_notes\
+x = generate_tone(notes(i),tim*dur(i),amp(i),Fs,nharm,fac);\
+m_spv = horzcat(m_spv,x);\
+\
+\cf2 end\
+end\
+\
+\
+\
+\cf0     \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+noteno_spv=cshrutispvnonzeros(1,tdim);\
+\
+note_name_spv=\cf5 'Ga 1'\cf0 ;\
+\
+\cf2 for \cf0 i=1:12\
+    \cf2 if \cf0 i==noteno_spv\
+        note_name_spv=N(i,1);\
+    \cf2 end\
+end\
+\
+\cf3 %note_name=cell2mat(notename);\
+%note_name_string is the swara name like Sa, Ri, Ga, Ma\
+\
+\cf0 note_name_spv_string=note_name_spv\{1\};\
+\
+janya_index_no = cshrutispvnonzeros(2,tdim);\
+\
+janya_name_incell=app.J(janya_index_no,1);\
+janya_name=janya_name_incell\{1\};\
+\
+\
+\
+SNo(tdim,1)=tdim;\
+Graha_Bhedam_From_Swara(tdim,1)=note_name_spv;\
+Raga_Name(tdim,1)=janya_name_incell;\
+\
+\
+\
+\
+fprintf(\cf5 '%d. The notes when shifted from the swara %s give the scale of raga %s \\n'\cf0 , tdim,note_name_spv_string,janya_name) \
+sound(m_spv,Fs)\
+\
+pause(20)\
+\
+\cf2 end\
+\
+\
+\
+\cf3 %All converted to cell form\
+\
+\cf0 S_No=num2cell(SNo);\
+\
+Graha_Bhedam_Ragas_after_Sa_Pa_Varjyam=table(S_No, Graha_Bhedam_From_Swara, Raga_Name)\
+\
+Uitable2_data=[Graha_Bhedam_From_Swara Raga_Name];\
+\
+\
+f = figure(\cf5 'Position'\cf0 , [100 100 752 250]);\
+t2 = uitable(\cf5 'Parent'\cf0 , f, \cf5 'Position'\cf0 , [25 50 700 200], \cf5 'Data'\cf0 , Uitable2_data);\
+t2.ColumnName = \{\cf5 'Graha Bhedam from Swara'\cf0 , \cf5 'YieldsRaga'\cf0 \};\
+t2.ColumnWidth = \{\cf5 'auto'\cf0 ,300\};\
+t2.FontSize=12;\
+\
+\
+\
+\
+\
+\
+\
+\
+\cf3 % Closure of work on Shadjama Panchama Varjyam\
+\cf0             \
+            \
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: NonotesButton\
+\cf0         \cf2 function \cf0 NonotesButtonButtonPushed(app, event)\
+            app.Nonotesinraga.Value= app.no_of_notes_in_raga;\
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: Nograhabhedamragas_melakartaButton\
+\cf0         \cf2 function \cf0 Nograhabhedamragas_melakartaButtonButtonPushed(app, event)\
+            app.Nograhabhedamragas_melakarta.Value=app.nocols_cmelakarta;\
+        \cf2 end\
+\
+\cf0         \cf3 % Value changed function: DropDown2\
+\cf0         \cf2 function \cf0 DropDown2ValueChanged(app, event)\
+            value = app.DropDown2.Value;\
+            \
+            atemp=zeros(1,12);\
+            \
+            app.J=cell(18, 2);\
+\
+            \
+            load(\cf5 'testovaci_janyaragas'\cf0 , \cf5 'janyaragas'\cf0 )\
+            \
+            app.J=janyaragas;\
+\
+            \
+[app.norows_J,~]=size(app.J);\
+\
+           \
+            \cf2 for \cf0 i=1:app.norows_J\
+                \cf2 if \cf0 strcmp(value, app.J(i,1))\
+                 atemp = cell2mat(app.J(i,2));\
+                \cf2 end\
+\cf0             \cf2 end\
+\cf0             app.aj = atemp;\
+            \
+            \
+            \
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: InputRagaListen\
+\cf0         \cf2 function \cf0 InputRagaListenButtonPushed(app, event)\
+            \
+            \
+            \
+shrutitemp = [261.62, 277.18, 293.66, 311.12, 329.62, 349.22, 369.99, 391.99, 415.30, 440.00, 466.16, 493.88];\
+app.shruti=shrutitemp';\
+\
+ainteriminterim=app.aj;\
+ainterim=ainteriminterim';\
+\
+bshruti=zeros(12,1);\
+\
+bshruti=ainterim.*app.shruti;\
+\
+\
+noelements_in_bshrutinonzeros=length(nonzeros(bshruti(:,1)));\
+bshrutinonzeros = zeros(noelements_in_bshrutinonzeros,1);\
+bshrutinonzeros=nonzeros(bshruti(:,1));\
+bshrutinonzeros = [bshrutinonzeros; 523.25];\
+no_of_notes_bshrutinonzeros=length(bshrutinonzeros);\
+\
+[reff,ceff]=size(bshrutinonzeros);\
+\
+\
+notes=[bshrutinonzeros;0;(fliplr(bshrutinonzeros'))'];\
+no_of_notes=length(notes);\
+\
+\cf3 %  Generating the sound of the raga\
+\
+\cf0 Fs        =  12000;  \cf3 % sampling frequency\
+\cf0 repeat    =  1;     \cf3 % no. of repeatition you want to hear the raga\
+\cf0 tim       =  1;      \cf3 % hear each swara/note for 1 second\
+\
+\
+%duration of each swara\
+\cf0 dur = ones(no_of_notes,1);\
+\
+\
+\cf3 % amplitude of sound of each note\
+\cf0 amp   = 48 * ones(no_of_notes,1)./60;\
+\
+\
+\cf3 % no. of harmonics\
+\cf0 nharm = 8;   \cf3 % (if nharm is 2, note freq f and 2f are added to sound)\
+\
+% scaling the amplitude of harmonics (exp(1-n)/fac))\
+\cf0 fac   = 1;\
+sig = [];\
+\cf2 for \cf0 j = 1:repeat\
+\cf2 for \cf0 i = 1:no_of_notes\
+x = generate_tone(notes(i),tim*dur(i),amp(i),Fs,nharm,fac);\
+sig = horzcat(sig,x);\
+\cf2 end\
+end\
+\
+\
+\
+\cf0 app.no_of_notes_in_raga_janya=reff-1;\
+\
+\
+fprintf(\cf5 'The input raga sounds like\\n'\cf0 )\
+pause(3)\
+sound(sig,Fs)\
+\
+filename=\cf5 'Mohanam_raga.wav'\cf0 ;\
+audiowrite(filename,sig,Fs);\
+\
+pause(20)\
+\
+            \
+            \
+            \
+            \
+            \
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: OnGrahaBhedam\
+\cf0         \cf2 function \cf0 OnGrahaBhedamJanya(app, event)\
+            \
+            \
+            \
+            shrutitemp = [261.62, 277.18, 293.66, 311.12, 329.62, 349.22, 369.99, 391.99, 415.30, 440.00, 466.16, 493.88];\
+app.shruti=shrutitemp';\
+\
+\cf3 %Circular shifting\
+\
+\cf0 ainterim=app.aj';\
+\
+\
+b=zeros(13,11);\
+\
+\cf2 for \cf0 i=1:11\
+\
+b(1,i) = i+1;\
+b([2:13],i)= circshift(ainterim,12-i);\
+\
+\cf2 end\
+\
+\
+\cf0 s=sum(b(2,1:11));\
+\
+c=zeros(13,s);\
+\
+t=0;\
+\
+\cf2 for \cf0 (i=1:11)\
+    \cf2 if \cf0 b(2,i)==1\
+        t=t+1;\
+        c(:,t)=b(:,i);\
+    \cf2 end\
+end\
+\cf0     \
+\
+\
+c=unique(c',\cf5 'rows'\cf0 )';\
+\
+\
+\cf3 %c of 13 cross 6 matrix is generated in which the first row is the swara\
+%from which Graha bhedam is done\
+%the rest 12 rows are the 1, 0 binary notation\
+%there are totally 6 columns which talk about the 6 new scales formed by\
+%graha bhedam, the 6 columns start with 1, i.e there is definitely a\
+%Shadjam.\
+\
+\cf0 cjanya=[];\
+\
+[norows_c,nocols_c]=size(c);\
+\
+cjanya_colindex=0;\
+\
+\cf2 for \cf0 i=1:nocols_c\
+ \
+    tempcolvector=c(:,i);\
+    temprowvector=tempcolvector';\
+    \
+    \cf2 for \cf0 janyano=1:app.norows_J\
+        \cf2 if \cf0 isequal(cell2mat(app.J(janyano,2)),temprowvector(1,[2:13]))\
+            cjanya_colindex = cjanya_colindex + 1;\
+            cjanya(1,cjanya_colindex) = temprowvector(1,1);\
+            cjanya(2,cjanya_colindex) = janyano;\
+            cjanya([3:14],cjanya_colindex)=temprowvector(1,[2:13])';\
+        \cf2 end\
+\cf0     \cf2 end\
+\cf0             \
+    \
+\cf2 end\
+\
+\cf0 norows_cjanya=0;\
+\
+app.nocols_cjanya=0;\
+\
+[norows_cjanya,app.nocols_cjanya]=size(cjanya);\
+\
+\
+\
+\
+fprintf(\cf5 'The number of ragas produced on Graha Bhedam are %d\\n'\cf0 ,app.nocols_cjanya)\
+\
+\
+    \
+\cf3 %Production of cshruti matrix with zeros for the shifted ragas\
+\cf0 cshruti=zeros(15,app.nocols_cjanya);\
+\
+\cf2 for \cf0 i = 1:app.nocols_cjanya\
+    cshruti(1,i)=cjanya(1,i);\
+    cshruti(2,i)=cjanya(2,i);\
+    cshruti([3:14],i)=cjanya([3:14],i).*app.shruti.*((1.059463)^(cjanya(1,i)-1));\
+    cshruti(15,i)= 523.25.*((1.059463)^(cjanya(1,i)-1));\
+\cf2 end\
+\
+\
+\
+\cf3 %Generation of cshrutinonzeros matrix\
+\
+\cf0 noelements_in_cshrutinonzeros=length(nonzeros(cshruti(:,1)));\
+cshrutinonzeros = zeros(noelements_in_cshrutinonzeros,app.nocols_cjanya);\
+\
+\cf2 for \cf0 i=1:app.nocols_cjanya\
+    cshrutinonzeros(1,i)=cshruti(1,i);\
+    cshrutinonzeros(2,i)=cshruti(2,i);\
+    cshrutinonzeros([3:noelements_in_cshrutinonzeros],i)=nonzeros(cshruti([3:15],i));\
+\cf2 end\
+\
+\
+\cf0     \
+\
+\
+\
+\
+[reff,ceff]=size(cshrutinonzeros);\
+\
+\
+\
+\cf3 %Tabulation of Note Number and Swara Name\
+\
+\cf0 N=cell(12, 2);\
+          \
+           N(1,:)=\{\cf5 'Sa'\cf0 , 1\};\
+           N(2,:)=\{\cf5 'Ri 1'\cf0 , 2\};\
+           N(3,:)=\{\cf5 'Ri 2'\cf0 , 3\};\
+           N(4,:)=\{\cf5 'Ga 2'\cf0 , 4\};\
+           N(5,:)=\{\cf5 'Ga 3'\cf0 , 5\};\
+           N(6,:)=\{\cf5 'Ma 1'\cf0 , 6\};\
+           N(7,:)=\{\cf5 'Ma 2'\cf0 , 7\};\
+           N(8,:)=\{\cf5 'Pa'\cf0 , 8\};\
+           N(9,:)=\{\cf5 'Dha 1'\cf0 , 9\};\
+           N(10,:)=\{\cf5 'Dha 2'\cf0 , 10\};\
+           N(11,:)=\{\cf5 'Ni 2'\cf0 , 11\};\
+           N(12,:)=\{\cf5 'Ni 3'\cf0 , 12\};\
+\
+         \
+           \
+           \
+SNo=zeros(ceff,1);          \
+Graha_Bhedam_From_Swara=cell(ceff,1);\
+Raga_Name=cell(ceff,1);\
+\
+moverall=[];\
+\
+\cf2 for \cf0 tdim=1:ceff\
+\
+\cf3 %sound vector\
+\
+\cf0 notes=[cshrutinonzeros([3:reff],tdim);0;(fliplr(cshrutinonzeros([3:reff],tdim)'))'];\
+no_of_notes=length(notes);\
+\
+\cf3 %  Generating the sound of the raga\
+\
+\cf0 Fs        =  12000;  \cf3 % sampling frequency\
+\cf0 repeat    =  1;     \cf3 % no. of repeatition you want to hear the raga\
+\cf0 tim       =  1;      \cf3 % hear each swara/note for 1 second\
+\
+\
+%duration of each swara\
+\cf0 dur = ones(no_of_notes,1);\
+\
+\
+\cf3 % amplitude of sound of each note\
+\cf0 amp   = 48 * ones(no_of_notes,1)./60;\
+\
+\
+\cf3 % no. of harmonics\
+\cf0 nharm = 8;   \cf3 % (if nharm is 2, note freq f and 2f are added to sound)\
+\
+% scaling the amplitude of harmonics (exp(1-n)/fac))\
+\cf0 fac   = 1;\
+m = [];\
+\cf2 for \cf0 j = 1:repeat\
+\cf2 for \cf0 i = 1:no_of_notes\
+x = generate_tone(notes(i),tim*dur(i),amp(i),Fs,nharm,fac);\
+m = horzcat(m,x);\
+\cf2 end\
+end\
+\
+\
+\
+\cf0 noteno=cshrutinonzeros(1,tdim);\
+\
+\cf3 %for initializing with random note Ga1\
+\cf0 note_name=\cf5 'Ga 1'\cf0 ;\
+\
+\cf2 for \cf0 i=1:12\
+    \cf2 if \cf0 i==noteno\
+        note_name=N(i,1);\
+    \cf2 end\
+end\
+\
+\cf3 %note_name=cell2mat(notename);\
+%note_name_string is the swara name like Sa, Ri, Ga, Ma\
+\
+\cf0 note_name_string=note_name\{1\};\
+\
+janya_no = cshrutinonzeros(2,tdim);\
+\
+raga_name_incell=app.J(janya_no,1);\
+raga_name=raga_name_incell\{1\};\
+\
+\
+SNo(tdim,1)=tdim;\
+Graha_Bhedam_From_Swara(tdim,1)=note_name;\
+Raga_Name(tdim,1)=raga_name_incell;\
+\
+\
+\
+fprintf(\cf5 '%d. The notes when shifted from the swara %s give the scale of raga %s \\n'\cf0 , tdim,note_name_string,raga_name) \
+sound(m,Fs)\
+\
+\
+pause(20)\
+\
+\
+\
+\cf2 end\
+\
+\
+\cf3 %Cell to string\
+\cf0 Shruthi_Bhedam_From_Swara=char(Graha_Bhedam_From_Swara);\
+Raga_Name_char=char(Raga_Name);\
+\
+\cf3 %tout = table('size',[ceff 4],'VariableTypes',\{'int8','string','int8','string'\});          \
+% tout = table(SNo,Shruthi_Bhedam_From_Swara,Yields_MelakartaNo,Melakarta_Raga);\
+\
+\
+%All converted to cell form\
+\
+\cf0 S_No=num2cell(SNo);\
+\
+Graha_Bhedam_Ragas=table(S_No, Graha_Bhedam_From_Swara, Raga_Name)\
+\
+\cf3 %f=uifigure;\
+%uit = uitable(f,'Data',tout_cell);\
+%uit.ColumnName = \{'SNo','Swara','Mela No','Raga'\};\
+\
+\cf0  \
+\
+\
+\
+Uitable_data_3=[Graha_Bhedam_From_Swara Raga_Name];\
+\
+\cf3 % f=uifigure;\
+% uit = uitable('Parent', f,'Data',magic(10))\
+\
+\
+\cf0 f3 = figure(\cf5 'Position'\cf0 , [100 100 752 250]);\
+\
+t3 = uitable(\cf5 'Parent'\cf0 , f3, \cf5 'Position'\cf0 , [25 50 700 200], \cf5 'Data'\cf0 , Uitable_data_3);\
+t3.ColumnName = \{\cf5 'Graha Bhedam from Swara'\cf0 , \cf5 'Yields Raga'\cf0 \};\
+t3.ColumnWidth = \{\cf5 'auto'\cf0 , 300\};\
+t3.FontSize=12;\
+\
+\
+            \
+            \
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: NoNotesinRagaButton\
+\cf0         \cf2 function \cf0 NoNotesinRagaButtonButtonPushed(app, event)\
+            app.NoNotesInRaga.Value= app.no_of_notes_in_raga_janya;\
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: NoGrahaBhedamRagasButton\
+\cf0         \cf2 function \cf0 NoGrahaBhedamRagasButtonButtonPushed(app, event)\
+            app.NoGrahaBhedamRagas.Value=app.nocols_cjanya;\
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: Nograhabhedamragas_SaPaVarjyamButton\
+\cf0         \cf2 function \cf0 Nograhabhedamragas_SaPaVarjyamButtonButtonPushed(app, event)\
+            app.Nograhabhedamragas_SaPaVarjyam.Value=app.nocols_cjanyaspv;\
+        \cf2 end\
+\
+\cf0         \cf3 % Value changed function: DropDown3\
+\cf0         \cf2 function \cf0 DropDown3ValueChanged(app, event)\
+            value = app.DropDown3.Value;\
+            \
+           \
+            atemp1=zeros(1,12);\
+            atemp2=zeros(1,12);\
+            \
+            app.Aj=cell(6, 3);\
+\
+            \
+            load (\cf5 'testovaci_ajanya.mat'\cf0 , \cf5 'ajanya'\cf0 )\
+            \
+            app.Aj=ajanya;\
+\
+            \cf2 for \cf0 i=1:6\
+                \cf2 if \cf0 strcmp(value, app.Aj(i,1))\
+                 atemp1 = cell2mat(app.Aj(i,2));\
+                 atemp2 = cell2mat(app.Aj(i,3));\
+                 \
+                \cf2 end\
+\cf0             \cf2 end\
+\cf0             app.a1=atemp1;\
+            app.a2=atemp2;\
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: Button\
+\cf0         \cf2 function \cf0 ButtonButtonPushed(app, event)\
+            \
+            \
+            \
+            \
+            \
+shrutitemp = [261.62, 277.18, 293.66, 311.12, 329.62, 349.22, 369.99, 391.99, 415.30, 440.00, 466.16, 493.88];\
+app.shruti=shrutitemp';\
+\
+\cf3 %Arohana passage\
+\
+\cf0 a1interiminterim=app.a1;\
+a1interim=a1interiminterim';\
+\
+b1shruti=zeros(12,1);\
+\
+b1shruti=a1interim.*app.shruti;\
+\
+noelements_in_b1shrutinonzeros=length(nonzeros(b1shruti(:,1)));\
+b1shrutinonzeros = zeros(noelements_in_b1shrutinonzeros,1);\
+b1shrutinonzeros=nonzeros(b1shruti(:,1));\
+b1shrutinonzeros = [b1shrutinonzeros; 523.25];\
+\
+no_of_notes_b1shrutinonzeros=length(b1shrutinonzeros);\
+[reff,ceff]=size(b1shrutinonzeros);\
+\
+\
+\
+\cf3 %Avarohana passage\
+\
+\cf0 a2interiminterim=app.a2;\
+a2interim=a2interiminterim';\
+\
+b2shruti=zeros(12,1);\
+\
+b2shruti=a2interim.*app.shruti;\
+\
+noelements_in_b2shrutinonzeros=length(nonzeros(b2shruti(:,1)));\
+b2shrutinonzeros = zeros(noelements_in_b2shrutinonzeros,1);\
+b2shrutinonzeros=nonzeros(b2shruti(:,1));\
+b2shrutinonzeros = [b2shrutinonzeros; 523.25];\
+\
+no_of_notes_b2shrutinonzeros=length(b2shrutinonzeros);\
+[reff2,ceff2]=size(b2shrutinonzeros);\
+\
+\
+\
+\
+\
+notes=[b1shrutinonzeros;0;(fliplr(b2shrutinonzeros'))'];\
+no_of_notes=length(notes);\
+\
+\
+\
+\cf3 %  Generating the sound of the raga\
+\
+\cf0 Fs        =  12000;  \cf3 % sampling frequency\
+\cf0 repeat    =  1;     \cf3 % no. of repeatition you want to hear the raga\
+\cf0 tim       =  1;      \cf3 % hear each swara/note for 1 second\
+\
+\
+%duration of each swara\
+\cf0 dur = ones(no_of_notes,1);\
+\
+\
+\cf3 % amplitude of sound of each note\
+\cf0 amp   = 48 * ones(no_of_notes,1)./60;\
+\
+\
+\cf3 % no. of harmonics\
+\cf0 nharm = 8;   \cf3 % (if nharm is 2, note freq f and 2f are added to sound)\
+\
+% scaling the amplitude of harmonics (exp(1-n)/fac))\
+\cf0 fac   = 1;\
+sig = [];\
+\cf2 for \cf0 j = 1:repeat\
+\cf2 for \cf0 i = 1:no_of_notes\
+x = generate_tone(notes(i),tim*dur(i),amp(i),Fs,nharm,fac);\
+sig = horzcat(sig,x);\
+\cf2 end\
+end\
+\
+\
+\cf3 % app.no_of_notes_in_raga=reff-1;\
+\
+\
+\cf0 fprintf(\cf5 'The input raga sounds like\\n'\cf0 )\
+pause(3)\
+sound(sig,Fs)\
+pause(20)\
+\
+kedar=\cf5 'kedaragowla_raga.wav'\cf0 ;\
+\
+audiowrite(kedar,sig,Fs);\
+\
+            \
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: Button3\
+\cf0         \cf2 function \cf0 Button3ButtonPushed(app, event)\
+            \
+\
+            \
+shrutitemp = [261.62, 277.18, 293.66, 311.12, 329.62, 349.22, 369.99, 391.99, 415.30, 440.00, 466.16, 493.88];\
+app.shruti=shrutitemp';\
+\
+\cf3 %Circular shifting\
+\
+\cf0 a1interim=app.a1';\
+a2interim=app.a2';\
+\
+b1=zeros(13,11);\
+b2=zeros(13,11);\
+\
+\cf2 for \cf0 i=1:11\
+\
+b1(1,i) = i+1;\
+b1([2:13],i)= circshift(a1interim,12-i);\
+\
+\
+b2(1,i) = i+1;\
+b2([2:13],i)= circshift(a2interim,12-i);\
+\
+\
+\
+\cf2 end\
+\
+\
+\cf0 s1=sum(b1(2,1:11));\
+s2=sum(b2(2,1:11));\
+\
+\
+c1=zeros(13,s1);\
+c2=zeros(13,s1);\
+\
+\
+t=0;\
+\
+\cf2 for \cf0 (i=1:11)\
+    \cf2 if \cf0 b1(2,i)==1\
+        t=t+1;\
+        c1(:,t)=b1(:,i);\
+        c2(:,t)=b2(:,i);\
+    \cf2 end\
+\cf0     \
+   \
+    \
+\cf2 end\
+\
+\
+\cf0 c1=unique(c1',\cf5 'rows'\cf0 )';\
+c2=unique(c2',\cf5 'rows'\cf0 )';\
+            \
+            \
+            \
+c1janya=[];\
+\
+c2janya=[];\
+\
+\
+[norows_c1,nocols_c1]=size(c1);\
+\
+[norows_c2,nocols_c2]=size(c2);\
+\
+\
+c1janya_colindex=0;\
+\
+c2janya_colindex=0;\
+\
+\
+\cf2 for \cf0 i=1:nocols_c1\
+ \
+    temp1colvector=c1(:,i);\
+    temp1rowvector=temp1colvector';\
+\
+    temp2colvector=c2(:,i);\
+    temp2rowvector=temp2colvector';\
+\
+\
+    \
+    \cf2 for \cf0 janyano=1:6\
+        \cf2 if \cf0 (isequal(cell2mat(app.Aj(janyano,2)),temp1rowvector(1,[2:13])) & isequal(cell2mat(app.Aj(janyano,3)),temp2rowvector(1,[2:13])) )\
+            c1janya_colindex = c1janya_colindex + 1;\
+            c1janya(1,c1janya_colindex) = temp1rowvector(1,1);\
+            c1janya(2,c1janya_colindex) = janyano;\
+            c1janya([3:14],c1janya_colindex)=temp1rowvector(1,[2:13])';\
+        \
+        \
+          c2janya_colindex = c2janya_colindex + 1;\
+            c2janya(1,c2janya_colindex) = temp2rowvector(1,1);\
+            c2janya(2,c2janya_colindex) = janyano;\
+            c2janya([3:14],c2janya_colindex)=temp2rowvector(1,[2:13])';\
+        \
+                \
+        \cf2 end\
+\cf0     \cf2 end\
+\cf0             \
+    \
+\cf2 end\
+\
+\cf0 norows_c1janya=0;\
+\
+app.nocols_c1janya=0;\
+\
+[norows_c1janya,app.nocols_c1janya]=size(c1janya);\
+\
+\
+norows_c2janya=0;\
+\
+app.nocols_c2janya=0;\
+\
+[norows_c2janya,app.nocols_c2janya]=size(c2janya);\
+\
+\
+fprintf(\cf5 'The number of ragas produced on Graha Bhedam are %d\\n'\cf0 ,app.nocols_c1janya)\
+\
+\
+            \
+            \
+            \
+            \
+  \
+\cf3 %Production of cshruti matrix with zeros for the shifted ragas\
+\cf0 c1shruti=zeros(15,app.nocols_c1janya);\
+\
+\cf2 for \cf0 i = 1:app.nocols_c1janya\
+    c1shruti(1,i)=c1janya(1,i);\
+    c1shruti(2,i)=c1janya(2,i);\
+    c1shruti([3:14],i)=c1janya([3:14],i).*app.shruti.*((1.059463)^(c1janya(1,i)-1));\
+    c1shruti(15,i)= 523.25.*((1.059463)^(c1janya(1,i)-1));\
+\cf2 end\
+\
+\
+\cf0 c2shruti=zeros(15,app.nocols_c2janya);\
+\
+\cf2 for \cf0 i = 1:app.nocols_c2janya\
+    c2shruti(1,i)=c2janya(1,i);\
+    c2shruti(2,i)=c2janya(2,i);\
+    c2shruti([3:14],i)=c2janya([3:14],i).*app.shruti.*((1.059463)^(c2janya(1,i)-1));\
+    c2shruti(15,i)= 523.25.*((1.059463)^(c2janya(1,i)-1));\
+\cf2 end\
+\
+\
+\
+\
+\cf3 %Generation of cshrutinonzeros matrix\
+\
+\cf0 noelements_in_c1shrutinonzeros=length(nonzeros(c1shruti(:,1)));\
+c1shrutinonzeros = zeros(noelements_in_c1shrutinonzeros,app.nocols_c1janya);\
+\
+\cf2 for \cf0 i=1:app.nocols_c1janya\
+    c1shrutinonzeros(1,i)=c1shruti(1,i);\
+    c1shrutinonzeros(2,i)=c1shruti(2,i);\
+    c1shrutinonzeros([3:noelements_in_c1shrutinonzeros],i)=nonzeros(c1shruti([3:15],i));\
+\cf2 end\
+\
+\
+\cf0 noelements_in_c2shrutinonzeros=length(nonzeros(c2shruti(:,1)));\
+c2shrutinonzeros = zeros(noelements_in_c2shrutinonzeros,app.nocols_c2janya);\
+\
+\cf2 for \cf0 i=1:app.nocols_c2janya\
+    c2shrutinonzeros(1,i)=c2shruti(1,i);\
+    c2shrutinonzeros(2,i)=c2shruti(2,i);\
+    c2shrutinonzeros([3:noelements_in_c2shrutinonzeros],i)=nonzeros(c2shruti([3:15],i));\
+\cf2 end\
+\
+\cf0     \
+\
+\
+\
+\
+[reff,ceff]=size(c1shrutinonzeros);\
+[reff2,ceff2]=size(c2shrutinonzeros);\
+\
+\
+\
+\cf3 %Tabulation of Note Number and Swara Name\
+\
+\cf0 N=cell(12, 2);\
+          \
+           N(1,:)=\{\cf5 'Sa'\cf0 , 1\};\
+           N(2,:)=\{\cf5 'Ri 1'\cf0 , 2\};\
+           N(3,:)=\{\cf5 'Ri 2'\cf0 , 3\};\
+           N(4,:)=\{\cf5 'Ga 2'\cf0 , 4\};\
+           N(5,:)=\{\cf5 'Ga 3'\cf0 , 5\};\
+           N(6,:)=\{\cf5 'Ma 1'\cf0 , 6\};\
+           N(7,:)=\{\cf5 'Ma 2'\cf0 , 7\};\
+           N(8,:)=\{\cf5 'Pa'\cf0 , 8\};\
+           N(9,:)=\{\cf5 'Dha 1'\cf0 , 9\};\
+           N(10,:)=\{\cf5 'Dha 2'\cf0 , 10\};\
+           N(11,:)=\{\cf5 'Ni 2'\cf0 , 11\};\
+           N(12,:)=\{\cf5 'Ni 3'\cf0 , 12\};\
+\
+         \
+           \
+           \
+SNo=zeros(ceff,1);          \
+Graha_Bhedam_From_Swara=cell(ceff,1);\
+Raga_Name=cell(ceff,1);\
+\
+\
+\
+\cf2 for \cf0 tdim=1:ceff\
+\
+\
+   \
+\cf3 %sound vector\
+\
+\
+\
+\cf0 notes=[c1shrutinonzeros([3:reff],tdim);0;(fliplr(c2shrutinonzeros([3:reff2],tdim)'))'];\
+no_of_notes=length(notes);\
+\
+\cf3 %  Generating the sound of the raga\
+\
+\cf0 Fs        =  12000;  \cf3 % sampling frequency\
+\cf0 repeat    =  1;     \cf3 % no. of repeatition you want to hear the raga\
+\cf0 tim       =  1;      \cf3 % hear each swara/note for 1 second\
+\
+\
+%duration of each swara\
+\cf0 dur = ones(no_of_notes,1);\
+\
+\
+\cf3 % amplitude of sound of each note\
+\cf0 amp   = 48 * ones(no_of_notes,1)./60;\
+\
+\
+\cf3 % no. of harmonics\
+\cf0 nharm = 8;   \cf3 % (if nharm is 2, note freq f and 2f are added to sound)\
+\
+% scaling the amplitude of harmonics (exp(1-n)/fac))\
+\cf0 fac   = 1;\
+m = [];\
+\cf2 for \cf0 j = 1:repeat\
+\cf2 for \cf0 i = 1:no_of_notes\
+x = generate_tone(notes(i),tim*dur(i),amp(i),Fs,nharm,fac);\
+m = horzcat(m,x);\
+\cf2 end\
+end\
+\
+\
+\
+\cf0 noteno=c1shrutinonzeros(1,tdim);\
+\
+\cf3 %for initializing with random note Ga1\
+\cf0 note_name=\cf5 'Ga 1'\cf0 ;\
+\
+\cf2 for \cf0 i=1:12\
+    \cf2 if \cf0 i==noteno\
+        note_name=N(i,1);\
+    \cf2 end\
+end\
+\
+\cf3 %note_name=cell2mat(notename);\
+%note_name_string is the swara name like Sa, Ri, Ga, Ma\
+\
+\cf0 note_name_string=note_name\{1\};\
+\
+janya_no = c1shrutinonzeros(2,tdim);\
+\
+raga_name_incell=app.Aj(janya_no,1);\
+raga_name=raga_name_incell\{1\};\
+\
+\
+SNo(tdim,1)=tdim;\
+Graha_Bhedam_From_Swara(tdim,1)=note_name;\
+Raga_Name(tdim,1)=raga_name_incell;\
+\
+\
+\
+fprintf(\cf5 '%d. The notes when shifted from the swara %s give the scale of raga %s \\n'\cf0 , tdim,note_name_string,raga_name) \
+\
+sound(m,Fs)\
+\
+audiowrite(\cf5 'gs.wav'\cf0 ,m,Fs)\
+\
+\
+pause(20)\
+\
+\
+\
+\cf2 end\
+\
+\
+\cf3 %Cell to string\
+\cf0 Shruthi_Bhedam_From_Swara=char(Graha_Bhedam_From_Swara);\
+Raga_Name_char=char(Raga_Name);\
+\
+\cf3 %tout = table('size',[ceff 4],'VariableTypes',\{'int8','string','int8','string'\});          \
+% tout = table(SNo,Shruthi_Bhedam_From_Swara,Yields_MelakartaNo,Melakarta_Raga);\
+\
+\
+%All converted to cell form\
+\
+\cf0 S_No=num2cell(SNo);\
+\
+Graha_Bhedam_Ragas=table(S_No, Graha_Bhedam_From_Swara, Raga_Name)\
+\
+\cf3 %f=uifigure;\
+%uit = uitable(f,'Data',tout_cell);\
+%uit.ColumnName = \{'SNo','Swara','Mela No','Raga'\};\
+\
+\cf0  \
+\
+\
+\
+Uitable_data_3=[Graha_Bhedam_From_Swara Raga_Name];\
+\
+\cf3 % f=uifigure;\
+% uit = uitable('Parent', f,'Data',magic(10))\
+\
+\
+\cf0 f3 = figure(\cf5 'Position'\cf0 , [100 100 752 250]);\
+\
+t3 = uitable(\cf5 'Parent'\cf0 , f3, \cf5 'Position'\cf0 , [25 50 700 200], \cf5 'Data'\cf0 , Uitable_data_3);\
+t3.ColumnName = \{\cf5 'Graha Bhedam from Swara'\cf0 , \cf5 'Yields Raga'\cf0 \};\
+t3.ColumnWidth = \{\cf5 'auto'\cf0 , 300\};\
+t3.FontSize=12;\
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+            \
+\
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Button pushed function: Button2\
+\cf0         \cf2 function \cf0 Button2ButtonPushed(app, event)\
+            app.NoGrahaBhedamRagasAj.Value=app.nocols_c1janya;\
+            \
+        \cf2 end\
+\
+\cf0         \cf3 % Close request function: UIFigure\
+\cf0         \cf2 function \cf0 UIFigureCloseRequest(app, event)\
+            \
+        \cf2 end\
+\cf0     \cf2 end\
+\
+\cf0     \cf3 % Component initialization\
+\cf0     \cf2 methods \cf0 (Access = private)\
+\
+        \cf3 % Create UIFigure and components\
+\cf0         \cf2 function \cf0 createComponents(app)\
+\
+            \cf3 % Create UIFigure and hide until all components are created\
+\cf0             app.UIFigure = uifigure(\cf5 'Visible'\cf0 , \cf5 'off'\cf0 );\
+            app.UIFigure.Position = [101 101 640 480];\
+            app.UIFigure.Name = \cf5 'UI Figure'\cf0 ;\
+            app.UIFigure.CloseRequestFcn = createCallbackFcn(app, @UIFigureCloseRequest, true);\
+\
+            \cf3 % Create TabGroup\
+\cf0             app.TabGroup = uitabgroup(app.UIFigure);\
+            app.TabGroup.Position = [1 1 640 480];\
+\
+            \cf3 % Create Tab\
+\cf0             app.Tab = uitab(app.TabGroup);\
+            app.Tab.Title = \cf5 'Melakarta Ragas'\cf0 ;\
+\
+            \cf3 % Create Label\
+\cf0             app.Label = uilabel(app.Tab);\
+            app.Label.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.Label.FontSize = 18;\
+            app.Label.Position = [115 426 356 23];\
+            app.Label.Text = \cf5 'Explore Graha Bhedam for Melakarta Ragas'\cf0 ;\
+\
+            \cf3 % Create Label2\
+\cf0             app.Label2 = uilabel(app.Tab);\
+            app.Label2.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.Label2.Position = [38 295 20 15];\
+            app.Label2.Text = \cf5 ''\cf0 ;\
+\
+            \cf3 % Create LabelDropDown\
+\cf0             app.LabelDropDown = uilabel(app.Tab);\
+            app.LabelDropDown.HorizontalAlignment = \cf5 'right'\cf0 ;\
+            app.LabelDropDown.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.LabelDropDown.Position = [47 383 131 15];\
+            app.LabelDropDown.Text = \cf5 'Choose the raga'\cf0 ;\
+\
+            \cf3 % Create DropDown\
+\cf0             app.DropDown = uidropdown(app.Tab);\
+            app.DropDown.Items = \{\cf5 'Kanakaangi'\cf0 , \cf5 'Rathnaangi'\cf0 , \cf5 'Gaanamurthy'\cf0 , \cf5 'Vanaspathy'\cf0 , \cf5 'Manavathy'\cf0 , \cf5 'Taanaroopi'\cf0 , \cf5 'Senavathy'\cf0 , \cf5 'Hanumathodi'\cf0 , \cf5 'Dhenuka'\cf0 , \cf5 'Naatakapriya'\cf0 , \cf5 'Kokilapriya'\cf0 , \cf5 'Roopavathy'\cf0 , \cf5 'Gaayagapriya'\cf0 , \cf5 'Vakulabharanam'\cf0 , \cf5 'Maayamaalavagowla'\cf0 , \cf5 'Chakravaaham'\cf0 , \cf5 'Sooryakantham'\cf0 , \cf5 'Haatakambari'\cf0 , \cf5 'Jhankaardhwani'\cf0 , \cf5 'Natabhairavi'\cf0 , \cf5 'Kiravani'\cf0 , \cf5 'Kharahapriyaa'\cf0 , \cf5 'Gowrimanohari'\cf0 , \cf5 'Varunapriya'\cf0 , \cf5 'Maararanjani'\cf0 , \cf5 'Charukesi'\cf0 , \cf5 'Sarasaangi'\cf0 , \cf5 'Harikaambhoji'\cf0 , \cf5 'Dheerasankaraabharanam'\cf0 , \cf5 'Naagaanandini'\cf0 , \cf5 'Yaagapriya'\cf0 , \cf5 'Raagavardhani'\cf0 , \cf5 'Gaangeyabhooshani'\cf0 , \cf5 'Vaagatheeswari'\cf0 , \cf5 'Shoolini'\cf0 , \cf5 'Chalanaata'\cf0 , \cf5 'Saalakam'\cf0 , \cf5 'Jalaarnavam'\cf0 , \cf5 'Jhalavaraali'\cf0 , \cf5 'Navaneetham'\cf0 , \cf5 'Paavani'\cf0 , \cf5 'Raghupriya'\cf0 , \cf5 'Gavaambhodhi'\cf0 , \cf5 'Bhavapriya'\cf0 , \cf5 'Subhapantuvaraali'\cf0 , \cf5 'Shadvidhamaargini'\cf0 , \cf5 'Suvarnaangi'\cf0 , \cf5 'Divyamani'\cf0 , \cf5 'Dhavalaambari'\cf0 , \cf5 'Naamanaaraayani'\cf0 , \cf5 'Kaamavardhani'\cf0 , \cf5 'Raamapriya'\cf0 , \cf5 'Gamanasrama'\cf0 , \cf5 'Visvambari'\cf0 , \cf5 'Shyaamalaangi'\cf0 , \cf5 'Shanmugapriya'\cf0 , \cf5 'Simhendramadhyamam'\cf0 , \cf5 'Hemavathy'\cf0 , \cf5 'Dharmavathy'\cf0 , \cf5 'Neetimathi'\cf0 , \cf5 'Kaantaamani'\cf0 , \cf5 'Rishabhapriya'\cf0 , \cf5 'Lataangi'\cf0 , \cf5 'Vaachaspathy'\cf0 , \cf5 'Mechakalyani'\cf0 , \cf5 'Chitraambari'\cf0 , \cf5 'Sucharithram'\cf0 , \cf5 'Jyothiswaroopini'\cf0 , \cf5 'Dhaatuvarthini'\cf0 , \cf5 'Naasikabhooshani'\cf0 , \cf5 'Kosalam'\cf0 , \cf5 'Rasigapriya'\cf0 \};\
+            app.DropDown.Editable = \cf5 'on'\cf0 ;\
+            app.DropDown.ValueChangedFcn = createCallbackFcn(app, @choose_dropdown, true);\
+            app.DropDown.BackgroundColor = [1 1 1];\
+            app.DropDown.Position = [281 378 198 20];\
+            app.DropDown.Value = \cf5 'Kanakaangi'\cf0 ;\
+\
+            \cf3 % Create Nonotesinraga\
+\cf0             app.Nonotesinraga = uieditfield(app.Tab, \cf5 'numeric'\cf0 );\
+            app.Nonotesinraga.Editable = \cf5 'off'\cf0 ;\
+            app.Nonotesinraga.Position = [282 262 200 22];\
+\
+            \cf3 % Create LabelNumericEditField\
+\cf0             app.LabelNumericEditField = uilabel(app.Tab);\
+            app.LabelNumericEditField.HorizontalAlignment = \cf5 'right'\cf0 ;\
+            app.LabelNumericEditField.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.LabelNumericEditField.Position = [203 292 20 15];\
+            app.LabelNumericEditField.Text = \cf5 ''\cf0 ;\
+\
+            \cf3 % Create Nograhabhedamragas_melakarta\
+\cf0             app.Nograhabhedamragas_melakarta = uieditfield(app.Tab, \cf5 'numeric'\cf0 );\
+            app.Nograhabhedamragas_melakarta.Editable = \cf5 'off'\cf0 ;\
+            app.Nograhabhedamragas_melakarta.Position = [281 127 200 22];\
+\
+            \cf3 % Create NonotesButton\
+\cf0             app.NonotesButton = uibutton(app.Tab, \cf5 'push'\cf0 );\
+            app.NonotesButton.ButtonPushedFcn = createCallbackFcn(app, @NonotesButtonButtonPushed, true);\
+            app.NonotesButton.Position = [77.5 262 191 22];\
+            app.NonotesButton.Text = \cf5 'The number of Notes in this Raga:'\cf0 ;\
+\
+            \cf3 % Create Nograhabhedamragas_melakartaButton\
+\cf0             app.Nograhabhedamragas_melakartaButton = uibutton(app.Tab, \cf5 'push'\cf0 );\
+            app.Nograhabhedamragas_melakartaButton.ButtonPushedFcn = createCallbackFcn(app, @Nograhabhedamragas_melakartaButtonButtonPushed, true);\
+            app.Nograhabhedamragas_melakartaButton.Position = [81.5 127 187 22];\
+            app.Nograhabhedamragas_melakartaButton.Text = \cf5 'No of Melakarta Ragas:'\cf0 ;\
+\
+            \cf3 % Create Nograhabhedamragas_SaPaVarjyamButton\
+\cf0             app.Nograhabhedamragas_SaPaVarjyamButton = uibutton(app.Tab, \cf5 'push'\cf0 );\
+            app.Nograhabhedamragas_SaPaVarjyamButton.ButtonPushedFcn = createCallbackFcn(app, @Nograhabhedamragas_SaPaVarjyamButtonButtonPushed, true);\
+            app.Nograhabhedamragas_SaPaVarjyamButton.Position = [81 79 190 30];\
+            app.Nograhabhedamragas_SaPaVarjyamButton.Text = \cf5 'No of Ragas by Sa Pa Varjyam'\cf0 ;\
+\
+            \cf3 % Create Label3\
+\cf0             app.Label3 = uilabel(app.Tab);\
+            app.Label3.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.Label3.FontSize = 14;\
+            app.Label3.FontWeight = \cf5 'bold'\cf0 ;\
+            app.Label3.Position = [211 161 153 18];\
+            app.Label3.Text = \cf5 'Graha Bhedam Ragas:'\cf0 ;\
+\
+            \cf3 % Create Nograhabhedamragas_SaPaVarjyam\
+\cf0             app.Nograhabhedamragas_SaPaVarjyam = uieditfield(app.Tab, \cf5 'numeric'\cf0 );\
+            app.Nograhabhedamragas_SaPaVarjyam.Editable = \cf5 'off'\cf0 ;\
+            app.Nograhabhedamragas_SaPaVarjyam.Position = [281 87 200 22];\
+\
+            \cf3 % Create InputRaga\
+\cf0             app.InputRaga = uibutton(app.Tab, \cf5 'push'\cf0 );\
+            app.InputRaga.ButtonPushedFcn = createCallbackFcn(app, @Input_raga, true);\
+            app.InputRaga.Position = [281 305 200 54];\
+            app.InputRaga.Text = \cf5 'Listen to the input raga'\cf0 ;\
+\
+            \cf3 % Create OnShrutiBhedam\
+\cf0             app.OnShrutiBhedam = uibutton(app.Tab, \cf5 'push'\cf0 );\
+            app.OnShrutiBhedam.ButtonPushedFcn = createCallbackFcn(app, @Shrutibhedam, true);\
+            app.OnShrutiBhedam.Position = [279 189 202 60];\
+            app.OnShrutiBhedam.Text = \{\cf5 'Click to see what '\cf0 ; \cf5 'happens if you do '\cf0 ; \cf5 'Graha Bhedam to this Raga'\cf0 \};\
+\
+            \cf3 % Create Tab2\
+\cf0             app.Tab2 = uitab(app.TabGroup);\
+            app.Tab2.Title = \cf5 'Symmetric Janya Ragas'\cf0 ;\
+\
+            \cf3 % Create LabelDropDown2\
+\cf0             app.LabelDropDown2 = uilabel(app.Tab2);\
+            app.LabelDropDown2.HorizontalAlignment = \cf5 'right'\cf0 ;\
+            app.LabelDropDown2.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.LabelDropDown2.Position = [86 388 96 15];\
+            app.LabelDropDown2.Text = \cf5 'Choose the Raga'\cf0 ;\
+\
+            \cf3 % Create DropDown2\
+\cf0             app.DropDown2 = uidropdown(app.Tab2);\
+            app.DropDown2.Items = \{\cf5 'Sudha Saaveri'\cf0 , \cf5 'Sudha Dhanyaasi'\cf0 , \cf5 'Madhyamaavathy'\cf0 , \cf5 'Hindolam'\cf0 , \cf5 'Mohanam'\cf0 , \cf5 'Ghambeera Naata'\cf0 , \cf5 'Bhoopalam'\cf0 , \cf5 'Naagaswaraavali'\cf0 , \cf5 'Hamsadwani'\cf0 , \cf5 'Karnataka Sudha Saveri'\cf0 , \cf5 'Aabhogi'\cf0 , \cf5 'Valaji'\cf0 , \cf5 'Brindavani'\cf0 , \cf5 'Jog'\cf0 , \cf5 'Sivaranjani'\cf0 , \cf5 'Revathy'\cf0 , \cf5 'Sunaadhavinodhini'\cf0 , \cf5 'Hamsanaadham'\cf0 \};\
+            app.DropDown2.Editable = \cf5 'on'\cf0 ;\
+            app.DropDown2.ValueChangedFcn = createCallbackFcn(app, @DropDown2ValueChanged, true);\
+            app.DropDown2.BackgroundColor = [1 1 1];\
+            app.DropDown2.Position = [318 381 147 20];\
+            app.DropDown2.Value = \cf5 'Sudha Saaveri'\cf0 ;\
+\
+            \cf3 % Create InputRagaListen\
+\cf0             app.InputRagaListen = uibutton(app.Tab2, \cf5 'push'\cf0 );\
+            app.InputRagaListen.ButtonPushedFcn = createCallbackFcn(app, @InputRagaListenButtonPushed, true);\
+            app.InputRagaListen.Position = [318 322 147 36];\
+            app.InputRagaListen.Text = \cf5 'Listen to the Input Raga'\cf0 ;\
+\
+            \cf3 % Create NoNotesinRagaButton\
+\cf0             app.NoNotesinRagaButton = uibutton(app.Tab2, \cf5 'push'\cf0 );\
+            app.NoNotesinRagaButton.ButtonPushedFcn = createCallbackFcn(app, @NoNotesinRagaButtonButtonPushed, true);\
+            app.NoNotesinRagaButton.Position = [72 272 202 22];\
+            app.NoNotesinRagaButton.Text = \cf5 'The number of notes in this raga are'\cf0 ;\
+\
+            \cf3 % Create NoGrahaBhedamRagasButton\
+\cf0             app.NoGrahaBhedamRagasButton = uibutton(app.Tab2, \cf5 'push'\cf0 );\
+            app.NoGrahaBhedamRagasButton.ButtonPushedFcn = createCallbackFcn(app, @NoGrahaBhedamRagasButtonButtonPushed, true);\
+            app.NoGrahaBhedamRagasButton.Position = [71.5 154 202 22];\
+            app.NoGrahaBhedamRagasButton.Text = \cf5 'Number of Graha Bhedam Ragas'\cf0 ;\
+\
+            \cf3 % Create NoNotesInRaga\
+\cf0             app.NoNotesInRaga = uieditfield(app.Tab2, \cf5 'numeric'\cf0 );\
+            app.NoNotesInRaga.Position = [319 271 146 22];\
+\
+            \cf3 % Create NoGrahaBhedamRagas\
+\cf0             app.NoGrahaBhedamRagas = uieditfield(app.Tab2, \cf5 'numeric'\cf0 );\
+            app.NoGrahaBhedamRagas.Position = [319 154 146 22];\
+\
+            \cf3 % Create OnGrahaBhedam\
+\cf0             app.OnGrahaBhedam = uibutton(app.Tab2, \cf5 'push'\cf0 );\
+            app.OnGrahaBhedam.ButtonPushedFcn = createCallbackFcn(app, @OnGrahaBhedamJanya, true);\
+            app.OnGrahaBhedam.Position = [317.5 193 149 56];\
+            app.OnGrahaBhedam.Text = \{\cf5 'Click to see what'\cf0 ; \cf5 'Ragas you get on'\cf0 ; \cf5 'Graha Bhedam'\cf0 \};\
+\
+            \cf3 % Create Label5\
+\cf0             app.Label5 = uilabel(app.Tab2);\
+            app.Label5.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.Label5.FontSize = 18;\
+            app.Label5.Position = [84 420 415 23];\
+            app.Label5.Text = \cf5 'Explore Graha Bhedam for Symmetric Janya Ragas'\cf0 ;\
+\
+            \cf3 % Create Tab3\
+\cf0             app.Tab3 = uitab(app.TabGroup);\
+            app.Tab3.Title = \cf5 'Asymmetric Janya Ragas'\cf0 ;\
+\
+            \cf3 % Create Label4\
+\cf0             app.Label4 = uilabel(app.Tab3);\
+            app.Label4.HorizontalAlignment = \cf5 'right'\cf0 ;\
+            app.Label4.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.Label4.Position = [111 365 96 15];\
+            app.Label4.Text = \cf5 'Choose the Raga'\cf0 ;\
+\
+            \cf3 % Create DropDown3\
+\cf0             app.DropDown3 = uidropdown(app.Tab3);\
+            app.DropDown3.Items = \{\cf5 'Aarabi'\cf0 , \cf5 'Aabheri'\cf0 , \cf5 'Dhanyaasi'\cf0 , \cf5 'Kedaara Gowla'\cf0 , \cf5 'Mohana Kalyaani'\cf0 , \cf5 'Saalaka Bhairavi'\cf0 \};\
+            app.DropDown3.Editable = \cf5 'on'\cf0 ;\
+            app.DropDown3.ValueChangedFcn = createCallbackFcn(app, @DropDown3ValueChanged, true);\
+            app.DropDown3.BackgroundColor = [1 1 1];\
+            app.DropDown3.Position = [302 362 172 20];\
+            app.DropDown3.Value = \cf5 'Aarabi'\cf0 ;\
+\
+            \cf3 % Create Button\
+\cf0             app.Button = uibutton(app.Tab3, \cf5 'push'\cf0 );\
+            app.Button.ButtonPushedFcn = createCallbackFcn(app, @ButtonButtonPushed, true);\
+            app.Button.Position = [302 303 172 36];\
+            app.Button.Text = \cf5 'Listen to the Input Raga'\cf0 ;\
+\
+            \cf3 % Create Button2\
+\cf0             app.Button2 = uibutton(app.Tab3, \cf5 'push'\cf0 );\
+            app.Button2.ButtonPushedFcn = createCallbackFcn(app, @Button2ButtonPushed, true);\
+            app.Button2.Position = [55.5 190 202 22];\
+            app.Button2.Text = \cf5 'Number of Graha Bhedam Ragas'\cf0 ;\
+\
+            \cf3 % Create NoGrahaBhedamRagasAj\
+\cf0             app.NoGrahaBhedamRagasAj = uieditfield(app.Tab3, \cf5 'numeric'\cf0 );\
+            app.NoGrahaBhedamRagasAj.Position = [303 190 171 22];\
+\
+            \cf3 % Create Button3\
+\cf0             app.Button3 = uibutton(app.Tab3, \cf5 'push'\cf0 );\
+            app.Button3.ButtonPushedFcn = createCallbackFcn(app, @Button3ButtonPushed, true);\
+            app.Button3.Position = [301.5 232 173 53];\
+            app.Button3.Text = \{\cf5 'Click to see what Ragas '\cf0 ; \cf5 'you get on Graha Bhedam'\cf0 \};\
+\
+            \cf3 % Create Label6\
+\cf0             app.Label6 = uilabel(app.Tab3);\
+            app.Label6.VerticalAlignment = \cf5 'top'\cf0 ;\
+            app.Label6.FontSize = 18;\
+            app.Label6.Position = [69 418 424 23];\
+            app.Label6.Text = \cf5 'Explore Graha Bhedam for Asymmetric Janya Ragas'\cf0 ;\
+\
+            \cf3 % Show the figure after all components are created\
+\cf0             app.UIFigure.Visible = \cf5 'on'\cf0 ;\
+        \cf2 end\
+\cf0     \cf2 end\
+\
+\cf0     \cf3 % App creation and deletion\
+\cf0     \cf2 methods \cf0 (Access = public)\
+\
+        \cf3 % Construct app\
+\cf0         \cf2 function \cf0 app = App1\
+\
+            \cf3 % Create UIFigure and components\
+\cf0             createComponents(app)\
+\
+            \cf3 % Register the app with App Designer\
+\cf0             registerApp(app, app.UIFigure)\
+\
+            \cf3 % Execute the startup function\
+\cf0             runStartupFcn(app, @startupFcn)\
+\
+            \cf2 if \cf0 nargout == 0\
+                clear \cf5 app\
+\cf0             \cf2 end\
+\cf0         \cf2 end\
+\
+\cf0         \cf3 % Code that executes before app deletion\
+\cf0         \cf2 function \cf0 delete(app)\
+\
+            \cf3 % Delete UIFigure when app is deleted\
+\cf0             delete(app.UIFigure)\
+        \cf2 end\
+\cf0     \cf2 end\
+end\
+}
